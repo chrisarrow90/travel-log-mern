@@ -12,7 +12,7 @@ const Form = ({ currentId, setCurrentId }) => {
     creator: '',
     title: '',
     message: '',
-    tags: '',
+    tags: [],
     selectedFile: ''
   })
   const post = useSelector((state) =>
@@ -37,7 +37,7 @@ const Form = ({ currentId, setCurrentId }) => {
 
   const clearForm = () => {
     setCurrentId(null)
-    setPostData({ creator: '', title: '', message: '', tags: '', selectedFile: '' })
+    setPostData({ creator: '', title: '', message: '', tags: [], selectedFile: '' })
   }
 
   return (
@@ -78,8 +78,8 @@ const Form = ({ currentId, setCurrentId }) => {
           variant="outlined"
           label="Tags"
           fullWidth
-          value={postData.tags}
-          onChange={(e) => setPostData({ ...postData, tags: e.target.value })}
+          value={postData.tags.join(' ')}
+          onChange={(e) => setPostData({ ...postData, tags: e.target.value.split(/[ ,]+/) })}
         />
         <div className={classes.fileInput}>
           <FileBase
