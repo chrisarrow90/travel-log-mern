@@ -16,6 +16,11 @@ app.use(cors())
 // Routes
 app.use('/posts', postRoutes)
 
+// Only required for heroku deployment
+app.get('/', (req, res) => {
+  res.send('Hello to memories api')
+})
+
 // Server and DB Connection
 const PORT = process.env.PORT || 5000
 
