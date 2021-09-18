@@ -4,12 +4,19 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 dotenv.config()
 
+import postRoutes from './routes/posts.js'
+
 const app = express()
 
+// Middleware
 app.use(express.json({ limit: '30mb', extended: true }))
 app.use(express.urlencoded({ limit: '30mb', extended: true }))
 app.use(cors())
 
+// Routes
+app.use('/posts', postRoutes)
+
+// Server and DB Connection
 const PORT = process.env.PORT || 5000
 
 mongoose
