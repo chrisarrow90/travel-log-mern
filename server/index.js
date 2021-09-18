@@ -14,7 +14,7 @@ app.use(express.urlencoded({ limit: '30mb', extended: true }))
 app.use(cors())
 
 // Routes
-app.use('/posts', postRoutes)
+app.use('/api/v1/posts', postRoutes)
 
 // Only required for heroku deployment
 app.get('/', (req, res) => {
