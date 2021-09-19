@@ -5,21 +5,24 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 import postRoutes from './routes/posts.js'
+import userRoutes from './routes/users.js'
 
 const app = express()
 
 // Middleware
 app.use(express.json({ limit: '30mb', extended: true }))
 app.use(express.urlencoded({ limit: '30mb', extended: true }))
-app.use(
-  cors({
-    origin: 'https://travel-log-mern.netlify.app',
-    optionsSuccessStatus: 200
-  })
-)
+// app.use(
+//   cors({
+//     origin: ['https://travel-log-mern.netlify.app', 'http://localhost:3000'],
+//     optionsSuccessStatus: 200
+//   })
+// )
+app.use(cors())
 
 // Routes
 app.use('/api/v1/posts', postRoutes)
+app.use('/api/v1/user', userRoutes)
 
 // Only required for heroku deployment
 app.get('/', (req, res) => {
