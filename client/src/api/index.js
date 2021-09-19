@@ -1,6 +1,9 @@
 import axios from 'axios'
 
-const url = 'https://travel-mern-project.herokuapp.com/api/v1/posts'
+const url =
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:5000/api/v1/posts'
+    : 'https://travel-mern-project.herokuapp.com/api/v1/posts'
 
 export const fetchPosts = () => axios.get(url)
 
