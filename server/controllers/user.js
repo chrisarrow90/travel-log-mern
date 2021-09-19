@@ -28,6 +28,7 @@ export const signIn = async (req, res) => {
 }
 
 export const signUp = async (req, res) => {
+  console.log('hitting backend')
   const { email, password, firstName, lastName, confirmPassword } = req.body
   try {
     const existingUser = await User.findOne({ email })
