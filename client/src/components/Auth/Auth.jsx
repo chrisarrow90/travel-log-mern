@@ -5,23 +5,39 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import { GoogleLogin } from 'react-google-login'
 import { useDispatch } from 'react-redux'
 
+import { signin, signup } from '../../redux/actions/auth'
+
 import Input from './Input'
 import Icon from './icon'
 import useStyles from './styles'
+
+const initialFormState = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
+  confirmPassword: ''
+}
 
 const Auth = () => {
   const classes = useStyles()
   const [showPassword, setShowPassword] = useState(false)
   const [isSignup, setIsSignup] = useState(false)
+  const [formData, setFormData] = useState(initialFormState)
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const handleSubmit = () => {
-    //
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (isSignup) {
+      dispatch(signup(formData, history))
+    } else {
+      dispatch(signin(formData, history))
+    }
   }
 
-  const handleChange = () => {
-    //
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
   const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword)

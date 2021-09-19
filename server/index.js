@@ -5,6 +5,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 import postRoutes from './routes/posts.js'
+import userRoutes from './routes/users.js'
 
 const app = express()
 
@@ -21,6 +22,7 @@ app.use(cors())
 
 // Routes
 app.use('/api/v1/posts', postRoutes)
+app.use('/api/v1/user', userRoutes)
 
 // Only required for heroku deployment
 app.get('/', (req, res) => {
